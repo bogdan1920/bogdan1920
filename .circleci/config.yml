@@ -35,3 +35,22 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+version: 2.1
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/base:stable
+      
+jobs:
+  my-job-name:
+
+    executor: my-custom-executor
+    steps:
+      - checkout
+      - run: |
+          # echo Hello, World!
+
+workflows:
+  my-custom-workflow:
+    jobs:
+      - my-job-name
